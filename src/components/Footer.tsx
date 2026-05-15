@@ -47,7 +47,7 @@ export function Footer() {
         <div className="flex flex-col items-center md:items-start gap-4">
           <Link href="/">
             <Image
-              src="/logo.png" // Ajusta para o nome exato do teu ficheiro na pasta public
+              src="/chatclean.png" // Ajusta para o nome exato do teu ficheiro na pasta public
               alt="ChatClean"
               width={160}
               height={40}
