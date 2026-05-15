@@ -31,7 +31,7 @@ export function Header() {
         >
           <Link href="/">
             <Image
-              src="/logo.png"
+              src="/chatclean.png"
               alt="ChatClean"
               width={160}
               height={40}
