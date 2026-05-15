@@ -87,7 +87,7 @@ export default function DownloadPage() {
         <div className="text-center mb-10 flex justify-center">
           <Link href="/">
             <Image
-              src="/logo.png"
+              src="/chatclean.png"
               alt="ChatClean"
               width={180}
               height={45}
