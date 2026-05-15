@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta ChatClean (Clean White SaaS) */
+  --color-background: #ffffff; /* Fundo totalmente branco */
+  --color-brand-primary: #10b981;
+  --color-brand-hover: #059669;
+  --color-brand-light: rgba(16, 185, 129, 0.15);
+  --color-surface: #ffffff; /* Fundo dos cards (branco puro) */
+  --color-surface-border: #e5e7eb; /* Bordas (gray-200) para separar os cards do fundo branco */
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    /* Removi os gradientes para manter o visual 100% flat e branco */
+    background-image: none;
+
+    /* Textos escuros por padrão */
+    @apply text-zinc-800 antialiased selection:bg-brand-primary selection:text-white;
+  }
+}
