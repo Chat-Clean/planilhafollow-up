@@ -14,18 +14,21 @@ export async function POST(request: Request) {
       faturamento,
     });
 
-    // =========================================================================
-    // DICA DE AUTOMAÇÃO AQUI:
-    // Como você estruturou esse projeto em Next.js e Node, esta é a camada perfeita
-    // para disparar um POST para um Webhook (como no n8n ou similar).
-    // Assim, o lead cai direto no seu CRM ou dispara uma mensagem no WhatsApp.
-    // Exemplo:
-    // await fetch('SUA_URL_DO_WEBHOOK_N8N', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // });
-    // =========================================================================
+    // Coloque a URL gerada pelo n8n aqui
+    const n8nWebhookUrl = 'COLE_AQUI_A_URL_DO_WEBHOOK_DO_N8N';
+
+    // Disparando os dados para o n8n
+    await fetch(n8nWebhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome,
+        celular,
+        segmento,
+        faturamento,
+        dataCadastro: new Date().toISOString() // Adiciona a data no formato ISO
+      })
+    });
 
     return NextResponse.json({
       success: true,
