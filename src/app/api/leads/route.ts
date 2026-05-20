@@ -14,8 +14,8 @@ export async function POST(request: Request) {
       faturamento,
     });
 
-    // Coloque a URL gerada pelo n8n aqui
-    const n8nWebhookUrl = 'COLE_AQUI_A_URL_DO_WEBHOOK_DO_N8N';
+    // URL do webhook do n8n
+    const n8nWebhookUrl = 'https://teste-n8n.pxohxs.easypanel.host/webhook/leads';
 
     // Disparando os dados para o n8n
     await fetch(n8nWebhookUrl, {
@@ -26,6 +26,7 @@ export async function POST(request: Request) {
         celular,
         segmento,
         faturamento,
+        origem: 'campanha follow-up v2', // Origem fixa do lead
         dataCadastro: new Date().toISOString() // Adiciona a data no formato ISO
       })
     });

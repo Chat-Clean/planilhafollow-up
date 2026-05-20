@@ -9,6 +9,7 @@ import Link from "next/link";
 export default function DownloadPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoadingWebhook, setIsLoadingWebhook] = useState(false);
 
   const [formData, setFormData] = useState({
     nome: "",
@@ -72,6 +73,34 @@ export default function DownloadPage() {
       console.error("Erro ao enviar formulário", error);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleAccessSpreadsheet = async () => {
+    setIsLoadingWebhook(true);
+    try {
+      // Disparar webhook para o n8n ao acessar a planilha
+      const onlyNumbers = formData.celular.replace(/\D/g, "");
+      const dataToSubmit = {
+        ...formData,
+        celular: onlyNumbers,
+        origem: 'campanha follow-up v2', // Origem fixa do lead
+      };
+
+      await fetch("https://teste-n8n.pxohxs.easypanel.host/webhook/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataToSubmit),
+      });
+
+      // Redirecionar para a planilha após disparar webhook
+      window.location.href = "LINK_DA_SUA_PLANILHA";
+    } catch (error) {
+      console.error("Erro ao disparar webhook", error);
+      // Mesmo com erro, redireciona para a planilha
+      window.location.href = "LINK_DA_SUA_PLANILHA";
+    } finally {
+      setIsLoadingWebhook(false);
     }
   };
 
@@ -185,7 +214,7 @@ export default function DownloadPage() {
                   disabled={isSubmitting}
                   className="w-full mt-2 bg-brand-primary hover:bg-brand-hover text-white font-bold py-4 rounded-xl transition-all flex justify-center items-center gap-2 disabled:opacity-50"
                 >
-                  {isSubmitting ? "Validando..." : "Liberar Planilha"}
+                  {isSubmitting ? "Validando..." : "Desbloquear Acesso"}
                   {!isSubmitting && <ArrowRight className="w-5 h-5" />}
                 </button>
               </form>
@@ -203,14 +232,14 @@ export default function DownloadPage() {
               <p className="text-zinc-600 mb-8">
                 Clique abaixo para acessar sua cópia.
               </p>
-              <a
-                href="LINK_DA_SUA_PLANILHA"
-                target="_blank"
-                className="w-full bg-zinc-900 text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2"
+              <button
+                onClick={handleAccessSpreadsheet}
+                disabled={isLoadingWebhook}
+                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 disabled:opacity-50 transition-all"
               >
                 <Download className="w-5 h-5" />
-                Baixar Agora
-              </a>
+                {isLoadingWebhook ? "Processando..." : "Acessar Planilha"}
+              </button>
             </motion.div>
           )}
         </div>

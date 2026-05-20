@@ -31,7 +31,7 @@ export function Testimonials() {
             Quem já assumiu o controle
           </h2>
           <p className="text-zinc-600">
-            Histórias reais de gestores e empreendedores que organizaram a casa.
+            Mais de 500+ empresas confiam nessa planilha. Histórias reais de gestores e empreendedores que organizaram a casa.
           </p>
         </FadeUp>
 

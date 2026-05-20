@@ -14,10 +14,10 @@ export default function Home() {
 
       <Header />
       <Hero />
+      <FAQ />
       <Companies />
       <Features />
       <Testimonials />
-      <FAQ />
       <Footer />
 
       {/* Botão Flutuante Injetado Aqui */}

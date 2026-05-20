@@ -17,7 +17,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden">
+    <section className="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-primary/10 blur-[120px] rounded-[100%] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
@@ -36,7 +36,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 max-w-4xl leading-[1.1]"
+          className="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-900 max-w-4xl leading-[1.1]"
         >
           Assuma o controle total do seu negócio com{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-emerald-500">
@@ -50,15 +50,14 @@ export function Hero() {
           transition={{ delay: 0.2 }}
           className="mt-6 text-lg md:text-xl text-zinc-600 max-w-2xl font-light"
         >
-          Dê o play no vídeo abaixo para entender como essa ferramenta gratuita
-          vai organizar seus dados e fluxos de atendimento de forma definitiva.
+          Veja como organizar seus leads em 2 minutos
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="mt-12 w-full max-w-5xl aspect-video bg-surface rounded-2xl md:rounded-[2rem] border border-surface-border shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-2 md:p-4 relative group"
+          className="mt-6 md:mt-8 w-full max-w-5xl aspect-video bg-surface rounded-2xl md:rounded-[2rem] border border-surface-border shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-2 md:p-4 relative group"
         >
           <div className="w-full h-full bg-zinc-100 rounded-xl md:rounded-2xl overflow-hidden relative flex items-center justify-center border border-surface-border/50">
             <video
@@ -90,7 +89,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-12 flex items-center gap-4 flex-col sm:flex-row"
+          className="mt-6 md:mt-8 flex flex-col items-center gap-4"
         >
           <Link
             href="/download"
@@ -99,6 +98,9 @@ export function Hero() {
             Baixar Planilha Gratuita
             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
+          <p className="text-sm text-zinc-500 flex items-center gap-1.5">
+            <span className="text-brand-primary font-bold">✓</span> 100% Gratuito • Sem cartão de crédito
+          </p>
         </motion.div>
       </div>
     </section>
