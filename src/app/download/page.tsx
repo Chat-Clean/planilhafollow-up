@@ -2,14 +2,13 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, ArrowRight, Download } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function DownloadPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isLoadingWebhook, setIsLoadingWebhook] = useState(false);
 
   const [formData, setFormData] = useState({
     nome: "",
@@ -73,34 +72,6 @@ export default function DownloadPage() {
       console.error("Erro ao enviar formulário", error);
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handleAccessSpreadsheet = async () => {
-    setIsLoadingWebhook(true);
-    try {
-      // Disparar webhook para o n8n ao acessar a planilha
-      const onlyNumbers = formData.celular.replace(/\D/g, "");
-      const dataToSubmit = {
-        ...formData,
-        celular: onlyNumbers,
-        origem: 'campanha follow-up v2', // Origem fixa do lead
-      };
-
-      await fetch("https://teste-n8n.pxohxs.easypanel.host/webhook/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dataToSubmit),
-      });
-
-      // Redirecionar para a planilha após disparar webhook
-      window.location.href = "LINK_DA_SUA_PLANILHA";
-    } catch (error) {
-      console.error("Erro ao disparar webhook", error);
-      // Mesmo com erro, redireciona para a planilha
-      window.location.href = "LINK_DA_SUA_PLANILHA";
-    } finally {
-      setIsLoadingWebhook(false);
     }
   };
 
@@ -229,17 +200,13 @@ export default function DownloadPage() {
               <h2 className="text-2xl font-bold text-zinc-900 mb-2">
                 Sucesso!
               </h2>
-              <p className="text-zinc-600 mb-8">
-                Clique abaixo para acessar sua cópia.
+              <p className="text-zinc-600 mb-4">
+                Sua planilha foi enviada para o WhatsApp
               </p>
-              <button
-                onClick={handleAccessSpreadsheet}
-                disabled={isLoadingWebhook}
-                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 disabled:opacity-50 transition-all"
-              >
-                <Download className="w-5 h-5" />
-                {isLoadingWebhook ? "Processando..." : "Acessar Planilha"}
-              </button>
+              <p className="text-sm text-zinc-500 flex items-center justify-center gap-2">
+                <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                Verifique sua mensagem
+              </p>
             </motion.div>
           )}
         </div>
