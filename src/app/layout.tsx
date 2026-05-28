@@ -16,15 +16,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MTLQM6YCEH"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-MTLQM6YCEH');
-        </script>
-        {/* Fallback para quando o usuário está com JavaScript desativado */}
+        {/* Fallback do Meta Pixel para quando o usuário está com JavaScript desativado */}
         <noscript>
           <img 
             height="1" 
@@ -38,7 +30,31 @@ export default function RootLayout({
       <body>
         {children}
 
-        {/* Script do Meta Pixel usando o componente nativo do Next.js */}
+        {/* ==========================================
+            SCRIPTS DE RASTREAMENTO E ANALYTICS
+            ========================================== */}
+
+        {/* 1. Google Analytics (gtag.js) - Carregamento Externo */}
+        <Script 
+          strategy="afterInteractive" 
+          src="https://www.googletagmanager.com/gtag/js?id=G-MTLQM6YCEH" 
+        />
+
+        {/* 2. Google Analytics (gtag.js) - Configuração Inicial */}
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MTLQM6YCEH');
+            `,
+          }}
+        />
+
+        {/* 3. Script do Meta Pixel */}
         <Script
           id="meta-pixel"
           strategy="afterInteractive"
