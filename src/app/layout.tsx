@@ -34,13 +34,13 @@ export default function RootLayout({
             SCRIPTS DE RASTREAMENTO E ANALYTICS
             ========================================== */}
 
-        {/* 1. Google Analytics (gtag.js) - Carregamento Externo */}
+        {/* Google Analytics (gtag.js) - Carregamento Externo */}
         <Script 
           strategy="afterInteractive" 
           src="https://www.googletagmanager.com/gtag/js?id=G-MTLQM6YCEH" 
         />
 
-        {/* 2. Google Analytics (gtag.js) - Configuração Inicial */}
+        {/* Google Analytics (gtag.js) - Configuração Inicial */}
         <Script
           id="google-analytics"
           strategy="afterInteractive"
@@ -54,7 +54,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* 3. Script do Meta Pixel */}
+        {/* Script do Meta Pixel */}
         <Script
           id="meta-pixel"
           strategy="afterInteractive"
